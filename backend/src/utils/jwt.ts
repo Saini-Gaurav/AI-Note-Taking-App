@@ -6,13 +6,13 @@ import { JwtAccessPayload, JwtRefreshPayload } from "../types";
 
 export const signAccessToken = (userId: string, email: string): string =>
   jwt.sign({ sub: userId, email, type: "access" }, env.JWT_ACCESS_SECRET, {
-    expiresIn: env.JWT_ACCESS_EXPIRES_IN as jwt.SignOptions["expiresIn"]
+    expiresIn: env.JWT_ACCESS_EXPIRES_IN
   });
 
 export const signRefreshToken = (userId: string, email: string): { token: string; jti: string } => {
   const jti = randomUUID();
   const token = jwt.sign({ sub: userId, email, type: "refresh", jti }, env.JWT_REFRESH_SECRET, {
-    expiresIn: env.JWT_REFRESH_EXPIRES_IN as jwt.SignOptions["expiresIn"]
+    expiresIn: env.JWT_REFRESH_EXPIRES_IN
   });
   return { token, jti };
 };

@@ -82,7 +82,7 @@ export class AuthService {
     const accessToken = signAccessToken(userId, email);
     const refresh = signRefreshToken(userId, email);
     const tokenHash = await hashValue(refresh.token);
-    const ttlMs = ms(env.JWT_REFRESH_EXPIRES_IN as ms.StringValue);
+    const ttlMs = ms(env.JWT_REFRESH_EXPIRES_IN);
     await this.refreshTokenRepository.save({
       userId,
       tokenHash,
