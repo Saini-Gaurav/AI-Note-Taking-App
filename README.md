@@ -1,15 +1,75 @@
 # AI Notes Pro
 
-A full-stack AI-powered note-taking app built with Next.js and Hono.  
-It includes secure authentication, note management, search, and AI assistance for summarization, rewriting, and tags.
+A full-stack AI-powered note-taking application built with Next.js and Hono.  
+It provides secure authentication, note management, search, and AI capabilities for summarization, rewriting, and tag generation.
 
 ## Key Highlights
 
-- Secure auth flow with access + refresh tokens
-- Notes CRUD with search and responsive dashboard UI
-- AI actions: summarize, improve text, generate tags
-- Clean layered backend architecture for maintainability
-- AI fallback logic implemented for quota/provider failures
+- Secure authentication with access and refresh tokens
+- Complete notes CRUD with search and a responsive dashboard
+- AI actions for summarization, text improvement, and tag generation
+- Layered backend architecture designed for maintainability
+- Fallback logic for provider quota and availability issues
+
+## Feature Breakdown
+
+- **Authentication**
+  - Register, login, and logout
+  - Protected dashboard route
+  - Access and refresh token flow
+- **Notes Management**
+  - Create, read, update, and delete notes
+  - Search notes by query
+  - Draft-friendly editing workflow
+- **AI Assistance**
+  - Summarize long notes
+  - Improve writing clarity
+  - Generate suggested tags
+- **Reliability**
+  - Validation and centralized error handling
+  - Fallback AI responses when provider fails
+
+## AI Features
+
+- Real API integration with Gemini/OpenAI along with fallback handling for reliability.
+- Note-level AI endpoints:
+  - `POST /api/notes/:id/ai/summarize`
+  - `POST /api/notes/:id/ai/improve`
+  - `POST /api/notes/:id/ai/tags`
+- When quota, authentication, or model issues occur, the app surfaces clear error messages and can continue with graceful fallback responses to maintain consistent user experience.
+
+## System Architecture & Flow
+
+### Backend Flow
+
+`routes -> controllers -> services -> repositories -> models`
+
+1. Each request enters the route and middleware pipeline (auth, validation, rate limiting, and logging).
+2. Controller maps request to a business operation.
+3. Service executes core logic (including AI orchestration and fallback strategy).
+4. Repository interacts with MongoDB through Mongoose models.
+5. Response is returned with consistent error mapping.
+
+### Frontend Flow
+
+1. User authenticates and accesses the protected dashboard.
+2. Notes data is fetched through typed API client.
+3. User actions (save, delete, search, AI) invoke backend endpoints.
+4. UI updates local state and displays success/error toasts.
+
+## UI/UX
+
+- Responsive dashboard layout across desktop and smaller screens.
+- Clean, modern interface using Tailwind and component-driven design.
+- Light/dark theme support.
+- Clear feedback states for loading, errors, success toasts, and AI fallback messaging.
+
+## Key Technical Decisions
+
+- Adopted a layered backend architecture (`controller -> service -> repository`) to improve scalability and maintain separation of concerns.
+- Implemented an AI service abstraction to support multiple providers with minimal changes to business logic.
+- Added fallback handling to preserve feature continuity during provider or quota failures.
+- Used JWT-based authentication with refresh tokens to strengthen session security.
 
 ## Tech Stack
 
@@ -20,8 +80,19 @@ It includes secure authentication, note management, search, and AI assistance fo
 
 ## AI Fallback Note
 
-Due to external API quota/rate limitations, fallback logic is built into `ai.service.ts`.  
-If provider calls fail, the app still returns mock/fallback AI output so the product flow remains demo-ready.
+Due to external API quota and rate limitations, fallback logic is built into `ai.service.ts`.  
+If provider calls fail, the app returns graceful fallback responses to maintain consistent user experience.
+
+## Evaluation Focus
+
+This project prioritizes:
+
+- Clean and maintainable code
+- Functional AI integration
+- Robust error handling
+- Good user experience
+
+instead of focusing on unnecessary feature expansion.
 
 ## Project Structure
 
@@ -64,10 +135,10 @@ Minimum config:
 ### 3) Run the app
 
 ```bash
-# Terminal 1
+# Terminal 1 (Backend)
 cd backend && npm run dev
 
-# Terminal 2
+# Terminal 2 (Frontend)
 cd frontend && npm run dev
 ```
 
@@ -106,9 +177,7 @@ Email: demo@example.com
 Password: demo@123
 ```
 
-> Replace with your actual demo account before submission.
-
 ## License
 
-This project is created for assignment/demo purposes.
+This project is developed for assignment and demonstration purposes.
 

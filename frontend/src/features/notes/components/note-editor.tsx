@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { Loader2, Sparkles, Tags, Wand2 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -137,7 +139,11 @@ export function NoteEditor({
         {aiOutput ? (
           <div className="rounded-lg border bg-muted/50 p-3 text-sm">
             <p className="mb-1 font-medium">AI output</p>
-            <p className="text-muted-foreground">{aiOutput}</p>
+            <div className="max-h-64 overflow-auto rounded border bg-background p-3 text-sm text-muted-foreground [&_a]:text-primary [&_blockquote]:border-l-2 [&_blockquote]:pl-3 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5 [&_h1]:text-base [&_h2]:text-sm [&_li]:ml-4 [&_ol]:list-decimal [&_ul]:list-disc [&_pre]:overflow-auto [&_pre]:rounded [&_pre]:bg-muted [&_pre]:p-2 [&_strong]:font-semibold">
+              <Markdown remarkPlugins={[remarkGfm]}>
+                {aiOutput}
+              </Markdown>
+            </div>
           </div>
         ) : null}
       </CardContent>

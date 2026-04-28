@@ -16,6 +16,7 @@ export class AiService {
     "gemini-1.5-flash-latest",
     "gemini-1.5-flash",
     "gemini-2.0-flash",
+    "gemini-2.5-flash"
   ].filter((m): m is string => Boolean(m));
 
   // 🔥 Fake AI helpers
