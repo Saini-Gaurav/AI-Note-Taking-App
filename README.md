@@ -168,7 +168,13 @@ npm run start
 
 - **Live Demo:** `https://ai-note-taking-app-sand.vercel.app`
 - **API URL:** `https://ai-note-taking-app-rnqw.onrender.com`
-- **Video Walkthrough:** `Add your demo video link here`
+- **Video Walkthrough:** `https://drive.google.com/file/d/1IgiA3JTpDhd6xO9f61dCzQkNFzgr0T6L/view?usp=sharing`
+
+## Deployment Note
+
+The backend is deployed on Render's free tier, which may cause a short delay (cold start) on the first request after inactivity. Subsequent requests perform normally.
+
+This does not affect application functionality.
 
 ## Test Credentials
 
