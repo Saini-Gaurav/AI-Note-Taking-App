@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { NoteCard } from "@/features/notes/components/note-card";
 import { NoteEditor } from "@/features/notes/components/note-editor";
 import { useNotes } from "@/features/notes/use-notes";
+import { stripMarkdownForEditor } from "@/lib/strip-markdown-for-editor";
 
 export function NotesDashboard() {
   const notes = useNotes();
@@ -92,7 +93,11 @@ export function NotesDashboard() {
           setIsEditorBusy(true);
           try {
             const result = await notes.onAiAction(id, action);
-            setAiOutput(result ?? "");
+            let outputForPanel = result ?? "";
+            if (action === "improve" && result) {
+              outputForPanel = stripMarkdownForEditor(result);
+            }
+            setAiOutput(outputForPanel);
             if (
               result &&
               action === "improve" &&
@@ -103,7 +108,7 @@ export function NotesDashboard() {
                 notes.selectedNote.id,
                 {
                   title: notes.selectedNote.title,
-                  content: result,
+                  content: outputForPanel,
                 },
                 false
               );

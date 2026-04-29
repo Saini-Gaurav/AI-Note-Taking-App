@@ -166,8 +166,8 @@ npm run start
 
 ## Demo
 
-- **Live Demo:** `Add your deployed frontend URL here`
-- **API URL:** `Add your deployed backend URL here`
+- **Live Demo:** `https://ai-note-taking-app-sand.vercel.app`
+- **API URL:** `https://ai-note-taking-app-rnqw.onrender.com`
 - **Video Walkthrough:** `Add your demo video link here`
 
 ## Test Credentials
