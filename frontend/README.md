@@ -24,7 +24,7 @@ Next.js client application for authentication, note management, search, and AI-a
 Create `frontend/.env.local`:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
 NEXT_PUBLIC_AI_MOCK_MODE=false
 ```
 

@@ -125,7 +125,7 @@ copy .env.example .env.local
 Minimum config:
 
 - `frontend/.env.local`
-  - `NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api`
+  - `NEXT_PUBLIC_API_URL=http://localhost:4000/api`
 - `backend/.env`
   - `MONGODB_URI=...`
   - `JWT_ACCESS_SECRET=...`
